@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.hexaware.ftp84.model.LeaveDetailsTest
+-------------------------------------------------------------------------------
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.184 s - in com.hexaware.ftp84.model.LeaveDetailsTest

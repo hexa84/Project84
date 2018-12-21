@@ -1,0 +1,2273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LeaveDetails.java</title>
+  <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+  <link rel='stylesheet' type='text/css' href='../../../../coverage.css'/>
+  <link rel='shortcut icon' type='image/png' href='../../../../logo.png'/>
+  <script type='text/javascript' src='../../../../coverage.js'></script>
+  <script type='text/javascript' src='../../../../prettify.js'></script>
+</head>
+<body onload='prettyPrint()'>
+  <table cellpadding='0' cellspacing='1'>
+    <caption>leavemanager\src\main\java\com\hexaware\ftp84\model\LeaveDetails.java</caption>
+    <tr>
+      <td class='line'>1</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>package com.hexaware.ftp84.model;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td><pre class='imports prettyprint' onclick='showHideLines(this)'><div>import com.hexaware.ftp84.persistence.DbConnection;
+import com.hexaware.ftp84.persistence.LeaveDAO;
+import com.hexaware.ftp84.persistence.EmployeeDAO;
+import java.util.Objects;
+import java.util.List;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+</div><span>import ...</span></pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * LeaveDetails class to store employee leave details.
+   * @author hexware
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>17</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>public class LeaveDetails {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee id.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>21</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private int <span class='instance covered' title='Reads: 22 Writes: 21'>empId</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee leaveid.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>25</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private int <span class='instance covered' title='Reads: 14 Writes: 21'>leaveid</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee no of leave days.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>29</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private int <span class='instance covered' title='Reads: 18 Writes: 21'>leavenoofdays</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee leave start date.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>33</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private Date <span class='instance covered' title='Reads: 14 Writes: 21'>startdate</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee leave end date.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>37</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private Date <span class='instance covered' title='Reads: 14 Writes: 21'>enddate</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee leave reason.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>41</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private String <span class='instance covered' title='Reads: 14 Writes: 21'>leavereason</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee applied date.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>45</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private Date <span class='instance covered' title='Reads: 14 Writes: 21'>leaveappliedon</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee manager comments.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>49</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private String <span class='instance covered' title='Reads: 14 Writes: 21'>mgrcomments</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee Leave Status.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>53</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private LeaveStatus <span class='instance covered' title='Reads: 18 Writes: 21'>leastatus</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * empId to store employee Leave Type.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>57</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private LeaveType <span class='instance covered' title='Reads: 14 Writes: 21'>leatype</span>;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>58</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>59</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final boolean equals(final Object obj) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>60</td><td class='count'>6</td>
+      <td><pre class='prettyprint jmp'>    <span id='l60s0' title='Executions: 6' class='covered cp' onclick='showHide(this,0)'>if (obj == null)</span> {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 56, 57</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109, 110, 111</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>61</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l61s0'>      return false;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 56</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>62</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>63</td><td class='count'>5</td>
+      <td><pre class='prettyprint jmp'>    <span id='l63s0' title='Executions: 5' class='covered cp' onclick='showHide(this,0)'>if (getClass() != obj.getClass())</span> {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 57</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109, 110, 111</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>64</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l64s0'>      return false;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 57</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>65</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>66</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l66s0'>    LeaveDetails ld = (LeaveDetails) obj;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109, 110, 111</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>67</td><td class='count'>4</td>
+      <td><pre class='prettyprint jmp'>    <span id='l67s0' title='Executions: 4' class='covered cp' onclick='showHide(this,0)'>if (Objects.equals(empId, ld.empId)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109, 110, 111</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>68</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l68s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(leaveid, ld.leaveid)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>69</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l69s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(leavenoofdays, ld.leavenoofdays)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>70</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l70s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(startdate, ld.startdate)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>71</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l71s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(enddate, ld.enddate)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>72</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l72s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(leavereason, ld.leavereason)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>73</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l73s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(leaveappliedon, ld.leaveappliedon)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>74</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l74s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(mgrcomments, ld.mgrcomments)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>75</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l75s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(leastatus, ld.leastatus)</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>76</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        && <span id='l76s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>Objects.equals(leatype, ld.leatype)) {</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>77</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l77s0'>      return true;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 109</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 269</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>78</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>79</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l79s0'>    return false;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testEquals: 110, 111</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>80</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>82</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>83</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final int hashCode() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>84</td><td class='count'>6</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l84s0'>    return Objects.hash(empId, leaveid, leavenoofdays, startdate, enddate, leavereason,</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 132x2, 133x2, 134x2</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>85</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            leaveappliedon, mgrcomments, leastatus, leatype);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>86</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>88</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  @Override</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>89</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final String toString() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>90</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l90s0'>    return "Emp ID :" + empId + "Leave ID :" + leaveid</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 156</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>91</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        + "Leave No of Days :" + leavenoofdays</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>92</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        + "Start Date :" + startdate + "End Date :"</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>93</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        + enddate + "Leave Reason :" + leavereason</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>94</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        + "Leave Applied On :" + leaveappliedon</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>95</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        + "Manager Comments :" + mgrcomments</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>96</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        + "Leave Status :" + leastatus</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>97</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        + "Leave Type :" + leatype;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>98</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Default Constructor for leave details.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>102</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l102s0'>  public LeaveDetails() {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.EmployeeTest#testEmployee: 51</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 283</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 67</li>
+        </ol>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>104</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l104s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.EmployeeTest#testEmployee: 51</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 283</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 67</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * @param argempId to initialize employee id.
+   * @param argleaveid to initialize employee leave id.
+   * @param argleavenoofdays to initialize employee no of leave days.
+   * @param argstartdate to initialize employee startdate.
+   * @param argenddate to initialize employee enddate.
+   * @param argleavereason to initialize employee leavereason.
+   * @param argleaveappliedon to initialize employee leaveappliedon.
+   * @param argmgrcomments to initialize employee manager comments.
+   * @param argleastatus to initialize employee leave status.
+   * @param argleatype to initialize employee leave type.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>117</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public LeaveDetails(final int argempId, final int argleaveid,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>118</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final int argleavenoofdays, final Date argstartdate,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>119</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final Date argenddate,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>120</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final String argleavereason, final Date argleaveappliedon, final String argmgrcomments,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>121</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l121s0'>        final LeaveStatus argleastatus, final LeaveType argleatype) {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>122</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l122s0'>    this.empId = argempId;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>123</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l123s0'>    this.leaveid = argleaveid;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>124</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l124s0'>    this.leavenoofdays = argleavenoofdays;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>125</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l125s0'>    this.startdate = argstartdate;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>126</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l126s0'>    this.enddate = argenddate;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>127</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l127s0'>    this.leavereason = argleavereason;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>128</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l128s0'>    this.leaveappliedon = argleaveappliedon;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>129</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l129s0'>    this.mgrcomments = argmgrcomments;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>130</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l130s0'>    this.leastatus = argleastatus;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>131</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l131s0'>    this.leatype = argleatype;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>132</td><td class='count'>20</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l132s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 468x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 147</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 285x4</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 43</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 409, 413, 417</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testHashCode: 124, 128, 131</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the EmployeeId.
+   * @return this Employee's ID.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>137</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final int getEmpId() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>138</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l138s0'>    return empId;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 148</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 44</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 79</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>139</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argempId to set employee id.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>145</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setEmpId(final int argempId) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>146</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l146s0'>    this.empId = argempId;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 68</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>147</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l147s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 68</li>
+        </ol>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the LeaveId.
+   * @return this Employee's leaveID.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>153</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final int getLeaveId() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>154</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l154s0'>    return leaveid;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 148</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 45</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 80</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>155</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argleaveid to set employee leaveid.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>161</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setLeaveId(final int argleaveid) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>162</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l162s0'>    this.leaveid = argleaveid;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 69</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>163</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l163s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 69</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the Leavenoofdays.
+   * @return this Employee's leavenoofdays.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>168</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final int getLeaveNoOfDays() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>169</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l169s0'>    return leavenoofdays;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 149</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 46</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 81</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>170</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argleavenoofdays to set employee leavenoofdays.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>176</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setLeaveNoOfDays(final int argleavenoofdays) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>177</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l177s0'>    this.leavenoofdays = argleavenoofdays;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 70</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>178</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l178s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 70</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the leave startdate.
+   * @return this Employee's leave startdate.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>183</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final Date getStartDate() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>184</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l184s0'>    return startdate;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 150</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 47</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 82</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>185</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argstartdate to set employee leave startdate.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>191</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setStartDate(final Date argstartdate) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>192</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l192s0'>    this.startdate = argstartdate;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 71</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>193</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l193s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 71</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the enddate.
+   * @return this Employee's leave enddate.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>198</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final Date getEndDate() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>199</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l199s0'>    return enddate;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 151</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 48</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 83</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>200</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argenddate to set employee leave enddate.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>206</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setEndDate(final Date argenddate) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>207</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l207s0'>    this.enddate = argenddate;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 72</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>208</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l208s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 72</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the leavereason.
+   * @return this Employee's leavereason.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>213</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final String getLeaveReason() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>214</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l214s0'>    return leavereason;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 151</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 49</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 84</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>215</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argleavereason to set employee leavereason.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>221</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setLeaveReason(final String argleavereason) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>222</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l222s0'>    this.leavereason = argleavereason;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 73</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>223</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l223s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 73</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the leaveappliedon.
+   * @return this Employee's leaveappliedon.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>228</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final Date getLeaveAppliedOn() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>229</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l229s0'>    return leaveappliedon;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 152</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 50</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 85</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>230</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argleaveappliedon to set employee leaveappliedon.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>236</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setLeaveAppliedOn(final Date argleaveappliedon) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>237</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l237s0'>    this.leaveappliedon = argleaveappliedon;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 74</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>238</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l238s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 74</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the mgrcomments.
+   * @return this Employee's manager comments.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>243</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final String getMgrComments() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>244</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l244s0'>    return mgrcomments;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 153</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 51</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 86</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>245</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argmgrcomments to set employee's manager comments.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>251</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setMgrComments(final String argmgrcomments) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>252</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l252s0'>    this.mgrcomments = argmgrcomments;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 75</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>253</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l253s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 75</li>
+        </ol>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the LeaveStatus.
+   * @return this Employee's LeaveStatus.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>259</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final LeaveStatus getLeaveStatus() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>260</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l260s0'>    return leastatus;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 154</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 52</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 87</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>261</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argleastatus to set employee's LeaveStatus.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>267</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setLeaveStatus(final LeaveStatus argleastatus) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>268</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l268s0'>    this.leastatus = argleastatus;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 76</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>269</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l269s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 76</li>
+        </ol>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Gets the LeaveType.
+   * @return this Employee's LeaveType.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>275</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final LeaveType getLeaveType() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>276</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l276s0'>    return leatype;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testtoString: 155</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveDetails: 53</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 88</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>277</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   *
+   * @param argleatype to set employee's LeaveStatus.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>283</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public final void setLeaveType(final LeaveType argleatype) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>284</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l284s0'>    this.leatype = argleatype;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 77</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>285</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l285s0'>  }</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testLeaveSetters: 77</li>
+        </ol>
+      </td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * The dao for LeaveDetails.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>290</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private static LeaveDAO dao() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>291</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l291s0'>    DbConnection db = new DbConnection();</pre>
+        <ol style='display:none'></ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>292</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l292s0'>    return db.getConnect().onDemand(LeaveDAO.class);</pre>
+        <ol style='display:none'></ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>293</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * The edao for EmployeeDetails.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>298</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  private static EmployeeDAO edao() {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>299</td><td class='count'>5</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l299s0'>    DbConnection db = new DbConnection();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 379</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>300</td><td class='count'>5</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l300s0'>    return db.getConnect().onDemand(EmployeeDAO.class);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 379</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>301</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * list all employee leave details.
+   * @return all employees' leave details
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>309</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public static LeaveDetails[] listAll() {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>311</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l311s0'>    List&lt;LeaveDetails> es = dao().list();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListAllEmpty: 187</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>312</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l312s0'>    return es.toArray(new LeaveDetails[es.size()]);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListAllEmpty: 187</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>313</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * @param leaveid to store leave id.
+   * @return to return manager id.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>320</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public static int showManager(final int leaveid) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>321</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l321s0'>    return dao().manager(leaveid);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>322</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * list all employee leave details.
+   * @param mgrId id to get employee leave details.
+   * @return all employees' leave details
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>329</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public static LeaveDetails[] listPending(final int mgrId) {</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>331</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l331s0'>    List&lt;LeaveDetails> es = dao().pending(mgrId);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 304, 306</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>332</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l332s0'>    return es.toArray(new LeaveDetails[es.size()]);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testPending: 304, 306</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>333</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * list employee leave details by id.
+   * @param leaveid id to get employee leave details.
+   * @return LeaveDetails
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>340</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public static LeaveDetails listById(final int leaveid) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>341</td><td class='count'>6</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l341s0'>    return dao().find(leaveid);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testListById: 268, 271</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>342</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * No of Overlapping Leaves.
+   * @param empId id to get employee details.
+   * @param startdate to get Start Date.
+   * @param enddate to get End Date.
+   * @return count of no of days between leave.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>351</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public static int countNo(final int empId, final String startdate, final String enddate) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>352</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l352s0'>    int count = dao().count(empId, startdate, enddate);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>353</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l353s0'>    return count;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>354</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * No of Overlapping Leaves.
+   * @param empId id to get employee details.
+   * @return employee's leave history.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>360</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public static LeaveDetails[] leaveHis(final int empId) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>361</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l361s0'>    List&lt;LeaveDetails> es = dao().empHistory(empId);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 490, 492, 494</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>362</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l362s0'>    return es.toArray(new LeaveDetails[es.size()]);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testleaveHis: 490, 492, 494</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>363</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * Method for Approve or Deny the Leave.
+   * @param leaveId to enter LeaveId to approve/deny.
+   * @param leavstatus to enter status to approve/deny.
+   * @param mgrcomments to get manager comments.
+   * @param mgrlid to get employee id.
+   * @return String.
+  */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>373</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public static String approveDeny(final int leaveId, final String leavstatus,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>374</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            final String mgrcomments, final int mgrlid) {</pre></td>
+    </tr>
+    <tr>
+      <td></td><td class='count'>4</td>
+      <td class='paths'>
+        <span style='cursor:default; background-color:#e01f00' onclick='hidePath()'>Path coverage: 4/33</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l402s0')">A: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l402s0')">B: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l390s0 l394s0 l399s0 l402s0')">C: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l390s0 l394s0 l394s1 l399s0 l402s0')">D: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l390s0 l394s0 l394s1 l395s0 l399s0 l402s0')">E: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l390s0 l390s1 l394s0 l399s0 l402s0')">F: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l390s0 l390s1 l394s0 l394s1 l399s0 l402s0')">G: 0</span>
+        <span class='covered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l390s0 l390s1 l394s0 l394s1 l395s0 l399s0 l402s0')">H: 1</span>
+        <span class='covered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l390s0 l390s1 l391s0 l399s0 l402s0')">I: 1</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l386s1 l390s0 l394s0 l399s0 l402s0')">J: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l386s1 l390s0 l394s0 l394s1 l399s0 l402s0')">K: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l386s1 l390s0 l394s0 l394s1 l395s0 l399s0 l402s0')">L: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l386s1 l390s0 l390s1 l394s0 l399s0 l402s0')">M: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l386s1 l390s0 l390s1 l394s0 l394s1 l399s0 l402s0')">N: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l386s1 l390s0 l390s1 l394s0 l394s1 l395s0 l399s0 l402s0')">O: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l386s1 l390s0 l390s1 l391s0 l399s0 l402s0')">P: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l386s0 l386s1 l387s0 l399s0 l402s0')">Q: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l390s0 l394s0 l399s0 l402s0')">R: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l390s0 l394s0 l394s1 l399s0 l402s0')">S: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l390s0 l394s0 l394s1 l395s0 l399s0 l402s0')">T: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l390s0 l390s1 l394s0 l399s0 l402s0')">U: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l390s0 l390s1 l394s0 l394s1 l399s0 l402s0')">V: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l390s0 l390s1 l394s0 l394s1 l395s0 l399s0 l402s0')">W: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l390s0 l390s1 l391s0 l399s0 l402s0')">X: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l386s1 l390s0 l394s0 l399s0 l402s0')">Y: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l386s1 l390s0 l394s0 l394s1 l399s0 l402s0')">Z: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l386s1 l390s0 l394s0 l394s1 l395s0 l399s0 l402s0')">AA: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l386s1 l390s0 l390s1 l394s0 l399s0 l402s0')">AB: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l386s1 l390s0 l390s1 l394s0 l394s1 l399s0 l402s0')">AC: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l386s1 l390s0 l390s1 l394s0 l394s1 l395s0 l399s0 l402s0')">AD: 0</span>
+        <span class='uncovered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l386s1 l390s0 l390s1 l391s0 l399s0 l402s0')">AE: 0</span>
+        <span class='covered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l386s0 l386s1 l387s0 l399s0 l402s0')">AF: 1</span>
+        <span class='covered' onclick="showPath(this,'l375s0 l380s0 l380s1 l381s0 l382s0 l382s1 l383s0 l399s0 l402s0')">AG: 1</span>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>375</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l375s0'>    LeaveDetails ld = LeaveDetails.listById(leaveId);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>376</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l376s0'>    String res = null;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>377</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l377s0'>    String dbStatus = String.valueOf(ld.getLeaveStatus());</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>378</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l378s0'>    int mgrid = ld.showManager(leaveId);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>379</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l379s0'>    int empId = ld.getEmpId();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>380</td><td class='count'>4</td>
+      <td><pre class='prettyprint jmp'>    <span id='l380s0' title='Executions: 4' class='covered cp' onclick='showHide(this,0)'>if (mgrid == mgrlid</span> && <span id='l380s1' title='Executions: 4' class='covered cp' onclick='showHide(this,1)'>ld != null)</span> {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>381</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l381s0'>      int noOfDays = ld.getLeaveNoOfDays();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>382</td><td class='count'>4</td>
+      <td><pre class='prettyprint jmp'>      <span id='l382s0' title='Executions: 4' class='covered cp' onclick='showHide(this,0)'>if (leavstatus.equals("APPROVED")</span> && <span id='l382s1' title='Executions: 2' class='covered cp' onclick='showHide(this,1)'>dbStatus.equals("PENDING"))</span> {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>383</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l383s0'>        dbStatus = "APPROVED";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>384</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l384s0'>        System.out.println("status:" + dbStatus);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>385</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l385s0'>        res = "Leave approved Successfully";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>386</td><td class='count'>3</td>
+      <td><pre class='prettyprint jmp'>      <span id='l386s0' title='Executions: 3' class='covered cp' onclick='showHide(this,0)'>}</span> else <span id='l386s1' title='Executions: 1' class='covered cp' onclick='showHide(this,1)'>if (leavstatus.equals("APPROVED")</span> && dbStatus.equals("DENIED")) {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 447, 449, 451</li>
+        </ol>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>387</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l387s0'>        dbStatus = "APPROVED";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>388</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l388s0'>        edao().decrement(empId, noOfDays);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>389</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l389s0'>        res = "Leave approved Successfully";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>390</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>      <span id='l390s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>}</span> else <span id='l390s1' title='Executions: 2' class='covered cp' onclick='showHide(this,1)'>if (leavstatus.equals("DENIED")</span> && dbStatus.equals("PENDING")) {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 447, 449</li>
+        </ol>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 447, 449</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>391</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l391s0'>        dbStatus = "DENIED";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 447</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>392</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l392s0'>        edao().increment(empId, noOfDays);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 447</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>393</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l393s0'>        res = "Leave Rejected";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 447</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>394</td><td class='count'>1</td>
+      <td><pre class='prettyprint jmp'>      <span id='l394s0' title='Executions: 1' class='covered cp' onclick='showHide(this,0)'>}</span> else <span id='l394s1' title='Executions: 1' class='covered cp' onclick='showHide(this,1)'>if (leavstatus.equals("DENIED")</span> && dbStatus.equals("APPROVED")) {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 449</li>
+        </ol>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 449</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>395</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l395s0'>        dbStatus = "DENIED";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 449</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>396</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l396s0'>        edao().increment(empId, noOfDays);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 449</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>397</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l397s0'>        res = "Leave Rejected";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 449</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>398</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>      }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>399</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l399s0'>      dao().comment(mgrcomments, dbStatus, leaveId);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>400</td><td>&nbsp;</td>
+      <td><pre class='comment'>      //}</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>401</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>402</td><td class='count'>4</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l402s0'>    return res;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testApproveDeny: 445, 447, 449, 451</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>403</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'></td><td>&nbsp;</td>
+      <td class='comment' onclick='showHideLines(this)'><div>  /**
+   * @param empId to initialize employee id.
+   * @param leavenoofdays to initialize employee no of leave days.
+   * @param startdate to initialize employee startdate.
+   * @param enddate to initialize employee enddate.
+   * @param leatype to initialize employee leave type.
+   * @param leavereason to initialize employee leavereason.
+   * @return String message.
+   * @throws ParseException throws.
+   */</div><span>  /*...*/</span></td>
+    </tr>
+    <tr>
+      <td class='line'>415</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  public static String insertLeaveDetails(final int empId,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>416</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final int leavenoofdays, final String startdate,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>417</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final String enddate, final String leatype,</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>418</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        final String leavereason)</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>419</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>          throws ParseException {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>420</td><td class='count'>8</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l420s0'>    Employee employ = Employee.listById(empId);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 358, 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>421</td><td class='count'>8</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l421s0'>    String s = null;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 358, 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>422</td><td class='count'>8</td>
+      <td><pre class='prettyprint jmp'>    <span id='l422s0' title='Executions: 8' class='covered cp' onclick='showHide(this,0)'>if (employ != null)</span> {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 358, 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>423</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l423s0'>      int mgrNo = employ.getEmpMgrId();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>424</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l424s0'>      System.out.println("Manager ID  " + mgrNo);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>425</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l425s0'>      SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>426</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l426s0'>      Date stDate = sdf.parse(startdate);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>427</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l427s0'>      Date enDate = sdf.parse(enddate);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>428</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l428s0'>      Calendar startCal = Calendar.getInstance();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>429</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l429s0'>      startCal.setTime(stDate);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>430</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l430s0'>      Calendar endCal = Calendar.getInstance();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>431</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l431s0'>      endCal.setTime(enDate);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>432</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l432s0'>      int count = 0;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>433</td><td class='count'>7</td>
+      <td><pre class='prettyprint jmp'>      <span id='l433s0' title='Executions: 7' class='covered cp' onclick='showHide(this,0)'>if (startCal.getTimeInMillis() == endCal.getTimeInMillis())</span> {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>434</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l434s0'>        System.out.println(count);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 364, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>435</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>      }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>436</td><td>&nbsp;</td>
+      <td><pre class='comment'>      // if (startCal.getTimeInMillis() > endCal.getTimeInMillis()) {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>437</td><td>&nbsp;</td>
+      <td><pre class='comment'>      //   startCal.setTime(enDate);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>438</td><td>&nbsp;</td>
+      <td><pre class='comment'>      //   endCal.setTime(stDate);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>439</td><td>&nbsp;</td>
+      <td><pre class='comment'>      // }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>440</td><td class='count'>7</td>
+      <td><pre class='prettyprint jmp'>      <span id='l440s0' title='Executions: 7' class='covered cp' onclick='showHide(this,0)'>if (startCal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>441</td><td class='count'>7</td>
+      <td><pre class='prettyprint jmp'>            || <span id='l441s0' title='Executions: 7' class='covered cp' onclick='showHide(this,0)'>startCal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>442</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        do {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>443</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l443s0'>          startCal.add(Calendar.DAY_OF_MONTH, 1);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 364, 367, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>444</td><td class='count'>3</td>
+      <td><pre class='prettyprint jmp'>          <span id='l444s0' title='Executions: 3' class='covered cp' onclick='showHide(this,0)'>if (startCal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 364, 367, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>445</td><td class='count'>3</td>
+      <td><pre class='prettyprint jmp'>              || <span id='l445s0' title='Executions: 3' class='covered cp' onclick='showHide(this,0)'>startCal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {</span></pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 364, 367, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>446</td><td class='count'>0</td>
+      <td><pre class='prettyprint uncovered' id='l446s0'>            ++count;</pre>
+        <ol style='display:none'></ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>447</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>          }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>448</td><td class='count'>3</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l448s0'>        } while (startCal.getTimeInMillis() &lt; endCal.getTimeInMillis());</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 364, 367, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>449</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>      }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>450</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l450s0'>      long diff = enDate.getTime() - stDate.getTime();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>451</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l451s0'>      long days = diff / (1000 * 60 * 60 * 24);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>452</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l452s0'>      Date today = new Date();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>453</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l453s0'>      String appliedOn = sdf.format(today);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>454</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l454s0'>      days = days + 1;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>455</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l455s0'>      long availBal = 0;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>456</td><td>&nbsp;</td>
+      <td><pre class='comment'>      //long dif = 0;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>457</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l457s0'>      System.out.println(days);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>458</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l458s0'>      long updLeave = 0;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>459</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l459s0'>      String leaStatus = null;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>460</td><td>&nbsp;</td>
+      <td><pre class='comment'>     //Employee employee = edao().find(empId);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>461</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l461s0'>      int overlap = LeaveDetails.countNo(empId, startdate, enddate);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>462</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l462s0'>      availBal = employ.getEmpLeaveAvail();</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>463</td><td>&nbsp;</td>
+      <td><pre class='comment'>     // dif = availBal - days;</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>464</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l464s0'>      System.out.println("Balance Available " + availBal + " " + days);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>465</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l465s0'>      updLeave = availBal - days;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>466</td><td>&nbsp;</td>
+      <td><pre class='comment'>      //LeaveDetails ld = new LeaveDetails();</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>467</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l467s0'>      int leavenoofdays1 = leavenoofdays - count;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>468</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l468s0'>      System.out.println("leave is: " + leavenoofdays1);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>469</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l469s0'>      System.out.println("leave:" + leavenoofdays);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>470</td><td class='count'>7</td>
+      <td><pre class='prettyprint jmp'>      <span id='l470s0' title='Executions: 7' class='covered cp' onclick='showHide(this,0)'>if (updLeave &lt;= 0)</span> {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>471</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l471s0'>        s = "insufficient leave balance...";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 373</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>472</td><td class='count'>6</td>
+      <td><pre class='prettyprint jmp'>      <span id='l472s0' title='Executions: 6' class='covered cp' onclick='showHide(this,0)'>}</span> else if (overlap > 0) {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>473</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l473s0'>        s = "Already applied on given Date...";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 364</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>474</td><td class='count'>5</td>
+      <td><pre class='prettyprint jmp'>      <span id='l474s0' title='Executions: 5' class='covered cp' onclick='showHide(this,0)'>}</span> else if (days &lt;= 0) {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 367, 370, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>475</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l475s0'>        s = "StartDate must be Greater than EndDate...";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 376</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>476</td><td class='count'>4</td>
+      <td><pre class='prettyprint jmp'>      <span id='l476s0' title='Executions: 4' class='covered cp' onclick='showHide(this,0)'>}</span> else if (stDate.compareTo(today) &lt; 0) {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 367, 370, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>477</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l477s0'>        s = "start date must be greater or equal to current Sdate...";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 367</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>478</td><td class='count'>3</td>
+      <td><pre class='prettyprint jmp'>      <span id='l478s0' title='Executions: 3' class='covered cp' onclick='showHide(this,0)'>}</span> else if (leavenoofdays != days) {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 370, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>479</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l479s0'>        s = "No Of Days Should be right";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 370</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>480</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>      } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>481</td><td class='count'>2</td>
+      <td><pre class='prettyprint jmp'>        <span id='l481s0' title='Executions: 2' class='covered cp' onclick='showHide(this,0)'>if (mgrNo == 0)</span> {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>482</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l482s0'>          leaStatus = "APPROVED";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>483</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l483s0'>          s = "Successfully Approved, no need for Permission";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>484</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        } else {</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>485</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l485s0'>          leaStatus = "PENDING";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>486</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l486s0'>          s = "Successfully leave applied for " + (days - count) + " days";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>487</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>        }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>488</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l488s0'>        dao().insert(empId, leavenoofdays1, startdate, enddate, leavereason, appliedOn,</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>489</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>            leaStatus, leatype);</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>490</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l490s0'>        int bal = (int) updLeave;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>491</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l491s0'>        System.out.println(bal);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>492</td><td class='count'>2</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l492s0'>        edao().decrement(empId, bal + count);</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>493</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>      }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>494</td><td class='count'>7</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l494s0'>    } else {</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>495</td><td class='count'>1</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l495s0'>      s = "No Such Employ";</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 358</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>496</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>    }</pre></td>
+    </tr>
+    <tr>
+      <td class='line'>497</td><td class='count'>8</td>
+      <td><pre class='prettyprint covered cp' onclick='showHide(this)' id='l497s0'>    return s;</pre>
+        <ol style='display:none'>
+          <li>com.hexaware.ftp84.model.LeaveDetailsTest#testinsertLeaveDetails: 358, 361, 364, 367, 370, 373, 376, 379</li>
+        </ol>
+      </td>
+    </tr>
+    <tr>
+      <td class='line'>498</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>  }</pre></td>
+    </tr>
+    <tr><td class='line'></td><td colspan='2'>&nbsp;</td></tr>
+    <tr>
+      <td class='line'>500</td><td>&nbsp;</td>
+      <td><pre class='prettyprint'>}</pre></td>
+    </tr>
+  </table>
+</body>
+</html>
